@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:m4prt/gridview.dart';
+import 'package:m4prt/listView.dart';
 import 'dart:io';
 
 // What is ListTile and CircleAvatar?
@@ -17,12 +20,13 @@ class MyApp extends StatelessWidget{
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         useMaterial3: true
       ),
-      home: HomePage(),
+      home: HomePage1(),
 
     );
   }
 }
 
+/*
 class HomePage extends StatelessWidget{
   List<Map<String, dynamic>> mChats =[
     {
@@ -30,26 +34,26 @@ class HomePage extends StatelessWidget{
       'Msg':'What are do!',
       "time": "01:01 AM",
       "UnreadCount": 1,
-      "profilePic":"https://stablediffusionweb.com/image/5282915-creative-cartoon-profile-picture"
+      "profilePic":"https://i.pravatar.cc/150?img=3"
       },
     {
       'Name': 'Raj Sahu',
       'Msg':'Hii!',
       "time": "10:01 AM",
       "UnreadCount": 0,
-      "profilePic":"https://stablediffusionweb.com/image/5282915-creative-cartoon-profile-picture"
+      "profilePic":"https://i.pravatar.cc/150?img=3"
     },{
       'Name': 'Ashis Sahu',
       'Msg':'Hello are you free!',
       "time": "08:01 AM",
       "UnreadCount": 3,
-      "profilePic":"https://stablediffusionweb.com/image/5282915-creative-cartoon-profile-picture"
+      "profilePic":"https://i.pravatar.cc/150?img=3"
     },{
       'Name': 'Sam Sahu',
       'Msg':'Good Morning!',
       "time": "06:01 AM",
       "UnreadCount": 2,
-      "profilePic":"https://stablediffusionweb.com/image/5282915-creative-cartoon-profile-picture"
+      "profilePic":"https://i.pravatar.cc/150?img=3"
     },
 
   ];
@@ -97,4 +101,8 @@ class HomePage extends StatelessWidget{
 
     );
   }
+  
+
+
 }
+*/

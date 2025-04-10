@@ -46,42 +46,235 @@ class _HomePageState extends State<HomePage> {
                   flex: 4,
                   child: getTitelpart4()
               ),
-              SizedBox(height:25,),
+              SizedBox(height:50,),
               ///last part
 
               Expanded(
                   flex: 2,
-                  child:Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                        child: Text.rich(
-                            TextSpan(
-                                text: "Enter\n",
-                                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
-                                children: [
-                                  TextSpan(
-                                    text: "your bill",
-                                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.w400
+                      child: Text.rich(
+                              TextSpan(
+                                  text: "Split\n",
+                                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
+                                  children: [
+                                    TextSpan(
+                                      text: "the total",
+                                      style: TextStyle(fontSize: 21, fontWeight: FontWeight.w400
+                                      ),
                                     ),
-                                  ),
-                                ]
+                                  ]
                             )
                         ),
 
                       ),
                       Expanded(
-                        flex: 3,
-                        child:Row(
-                          children: [
+                          flex: 3,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                        child:Container(
+                                          width:double.infinity,
+                                          height: double.infinity,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10)),
 
-                          ],
-                        )
+                                            color: Color(0xff03c980),
 
+                                          ),
+                                          child: Center(
+                                            child: Text.rich(
+                                                TextSpan(
+                                                    text: "-",
+                                                    style: TextStyle(
+                                                        fontSize: 38, fontWeight: FontWeight
+                                                        .w900, color: Colors.white),
+
+                                                )
+                                            ),
+                                          ),
+                                        )
+                                    ),
+
+                                    Expanded(
+                                      flex: 2,
+                                        child:Container(
+                                          width:double.infinity,
+                                          height: double.infinity,
+                                          decoration: BoxDecoration(
+                                            // borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),topRight: Radius.circular(10)),
+
+                                            color: Color(0xffffffff),
+
+                                          ),
+                                          child: Center(
+                                            child: Text.rich(
+                                                TextSpan(
+                                                    text: "2",
+                                                    style: TextStyle(
+                                                        fontSize: 21, fontWeight: FontWeight
+                                                        .w900, ),
+
+                                                )
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    // SizedBox(width: 8,),
+
+                                    Expanded(
+                                        child:Container(
+                                          width:double.infinity,
+                                          height: double.infinity,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),topRight: Radius.circular(10)),
+
+                                            color: Color(0xff03c980),
+
+                                          ),
+                                          child: Center(
+                                            child: Text.rich(
+                                                TextSpan(
+                                                    text: "+",
+                                                    style: TextStyle(
+                                                        fontSize: 21, fontWeight: FontWeight
+                                                        .w900, color: Colors.white),
+
+                                                )
+                                            ),
+                                          ),
+                                        )
+                                    ),
+
+
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+
+                            ],
+                          )
                       )
                     ],
                   ),
-              )
+
+                  // child:Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   children: [
+                  //     Expanded(
+                  //       child: Text.rich(
+                  //           TextSpan(
+                  //               text: "Split\n",
+                  //               style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
+                  //               children: [
+                  //                 TextSpan(
+                  //                   text: "the total",
+                  //                   style: TextStyle(fontSize: 21, fontWeight: FontWeight.w400
+                  //                   ),
+                  //                 ),
+                  //               ]
+                  //           )
+                  //       ),
+                  //
+                  //     ),
+                  //     Expanded(
+                  //
+                  //
+                  //         child: Row(
+                  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //           children: [
+                  //             Expanded(
+                  //                 child:Container(
+                  //                   width:double.infinity,
+                  //                   height: double.infinity,
+                  //                   decoration: BoxDecoration(
+                  //                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topLeft: Radius.circular(10)),
+                  //
+                  //                     color: Color(0xff03c980),
+                  //
+                  //                   ),
+                  //                   child: Center(
+                  //                     child: Text.rich(
+                  //                         TextSpan(
+                  //                             text: "-",
+                  //                             style: TextStyle(
+                  //                                 fontSize: 48, fontWeight: FontWeight
+                  //                                 .w900, color: Colors.white),
+                  //
+                  //                         )
+                  //                     ),
+                  //                   ),
+                  //                 )
+                  //             ),
+                  //             // SizedBox(width: 8,),
+                  //
+                  //             Expanded(
+                  //               flex: 2,
+                  //                 child:Container(
+                  //                   width:double.infinity,
+                  //                   height: double.infinity,
+                  //                   decoration: BoxDecoration(
+                  //                     // borderRadius: BorderRadius.circular(10),
+                  //
+                  //                     color: Color(0xffffffff),
+                  //
+                  //                   ),
+                  //                   child: Center(
+                  //                     child: Text.rich(
+                  //                         TextSpan(
+                  //                             text: "2",
+                  //                             style: TextStyle(
+                  //                                 fontSize: 34, fontWeight: FontWeight
+                  //                                 .w900, ),
+                  //
+                  //                         )
+                  //                     ),
+                  //                   ),
+                  //                 )
+                  //             ),
+                  //             // SizedBox(width: 8,),
+                  //
+                  //             Expanded(
+                  //                 child:Container(
+                  //                   width:double.infinity,
+                  //                   height: double.infinity,
+                  //                   decoration: BoxDecoration(
+                  //                     borderRadius: BorderRadius.only(topRight: Radius.circular(10),bottomRight: Radius.circular(10)),
+                  //
+                  //                     color: Color(0xff03c980),
+                  //
+                  //                   ),
+                  //                   child: Center(
+                  //                     child: Text.rich(
+                  //                         TextSpan(
+                  //                             text: "+",
+                  //                             style: TextStyle(
+                  //                                 fontSize: 38, fontWeight: FontWeight
+                  //                                 .w900, color: Colors.white),
+                  //
+                  //
+                  //                         )
+                  //                     ),
+                  //                   ),
+                  //                 )
+                  //             ),
+                  //
+                  //
+                  //           ],
+                  //         ),
+                  //     ),
+                  //   ],
+                  // ),
+              ),
+              SizedBox(height: 50,)
+
+
 
             ],
           ),

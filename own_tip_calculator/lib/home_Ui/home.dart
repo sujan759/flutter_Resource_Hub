@@ -8,13 +8,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var billAmtControler;
+  ///all are global variable // because it is used for any where // function under crete its limited accsses
+  ///
+  var billAmtControler= TextEditingController();
+  int perCount=1;
+  int tipPercent =0;
+  num totalBill=0.0;
+  num totalTipAmt=0.0;
+  num totalAmt=0.0;
+  num perPersonAmt=0.0;
+  bool custumTip= false;
+
 
   @override
   Widget build(BuildContext context) {
     /// SafeArea are used in the app adjucment in the func
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset:false,
         backgroundColor: Color(0xFFD9CDD5),
 
         body: Padding(
@@ -51,226 +62,9 @@ class _HomePageState extends State<HomePage> {
 
               Expanded(
                   flex: 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                      child: Text.rich(
-                              TextSpan(
-                                  text: "Split\n",
-                                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
-                                  children: [
-                                    TextSpan(
-                                      text: "the total",
-                                      style: TextStyle(fontSize: 21, fontWeight: FontWeight.w400
-                                      ),
-                                    ),
-                                  ]
-                            )
-                        ),
-
-                      ),
-                      Expanded(
-                          flex: 3,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                        child:Container(
-                                          width:double.infinity,
-                                          height: double.infinity,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10)),
-
-                                            color: Color(0xff03c980),
-
-                                          ),
-                                          child: Center(
-                                            child: Text.rich(
-                                                TextSpan(
-                                                    text: "-",
-                                                    style: TextStyle(
-                                                        fontSize: 38, fontWeight: FontWeight
-                                                        .w900, color: Colors.white),
-
-                                                )
-                                            ),
-                                          ),
-                                        )
-                                    ),
-
-                                    Expanded(
-                                      flex: 2,
-                                        child:Container(
-                                          width:double.infinity,
-                                          height: double.infinity,
-                                          decoration: BoxDecoration(
-                                            // borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),topRight: Radius.circular(10)),
-
-                                            color: Color(0xffffffff),
-
-                                          ),
-                                          child: Center(
-                                            child: Text.rich(
-                                                TextSpan(
-                                                    text: "2",
-                                                    style: TextStyle(
-                                                        fontSize: 21, fontWeight: FontWeight
-                                                        .w900, ),
-
-                                                )
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                    // SizedBox(width: 8,),
-
-                                    Expanded(
-                                        child:Container(
-                                          width:double.infinity,
-                                          height: double.infinity,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),topRight: Radius.circular(10)),
-
-                                            color: Color(0xff03c980),
-
-                                          ),
-                                          child: Center(
-                                            child: Text.rich(
-                                                TextSpan(
-                                                    text: "+",
-                                                    style: TextStyle(
-                                                        fontSize: 21, fontWeight: FontWeight
-                                                        .w900, color: Colors.white),
-
-                                                )
-                                            ),
-                                          ),
-                                        )
-                                    ),
+                  child:lastpart()
 
 
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 8,),
-
-                            ],
-                          )
-                      )
-                    ],
-                  ),
-
-                  // child:Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     Expanded(
-                  //       child: Text.rich(
-                  //           TextSpan(
-                  //               text: "Split\n",
-                  //               style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
-                  //               children: [
-                  //                 TextSpan(
-                  //                   text: "the total",
-                  //                   style: TextStyle(fontSize: 21, fontWeight: FontWeight.w400
-                  //                   ),
-                  //                 ),
-                  //               ]
-                  //           )
-                  //       ),
-                  //
-                  //     ),
-                  //     Expanded(
-                  //
-                  //
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //           children: [
-                  //             Expanded(
-                  //                 child:Container(
-                  //                   width:double.infinity,
-                  //                   height: double.infinity,
-                  //                   decoration: BoxDecoration(
-                  //                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topLeft: Radius.circular(10)),
-                  //
-                  //                     color: Color(0xff03c980),
-                  //
-                  //                   ),
-                  //                   child: Center(
-                  //                     child: Text.rich(
-                  //                         TextSpan(
-                  //                             text: "-",
-                  //                             style: TextStyle(
-                  //                                 fontSize: 48, fontWeight: FontWeight
-                  //                                 .w900, color: Colors.white),
-                  //
-                  //                         )
-                  //                     ),
-                  //                   ),
-                  //                 )
-                  //             ),
-                  //             // SizedBox(width: 8,),
-                  //
-                  //             Expanded(
-                  //               flex: 2,
-                  //                 child:Container(
-                  //                   width:double.infinity,
-                  //                   height: double.infinity,
-                  //                   decoration: BoxDecoration(
-                  //                     // borderRadius: BorderRadius.circular(10),
-                  //
-                  //                     color: Color(0xffffffff),
-                  //
-                  //                   ),
-                  //                   child: Center(
-                  //                     child: Text.rich(
-                  //                         TextSpan(
-                  //                             text: "2",
-                  //                             style: TextStyle(
-                  //                                 fontSize: 34, fontWeight: FontWeight
-                  //                                 .w900, ),
-                  //
-                  //                         )
-                  //                     ),
-                  //                   ),
-                  //                 )
-                  //             ),
-                  //             // SizedBox(width: 8,),
-                  //
-                  //             Expanded(
-                  //                 child:Container(
-                  //                   width:double.infinity,
-                  //                   height: double.infinity,
-                  //                   decoration: BoxDecoration(
-                  //                     borderRadius: BorderRadius.only(topRight: Radius.circular(10),bottomRight: Radius.circular(10)),
-                  //
-                  //                     color: Color(0xff03c980),
-                  //
-                  //                   ),
-                  //                   child: Center(
-                  //                     child: Text.rich(
-                  //                         TextSpan(
-                  //                             text: "+",
-                  //                             style: TextStyle(
-                  //                                 fontSize: 38, fontWeight: FontWeight
-                  //                                 .w900, color: Colors.white),
-                  //
-                  //
-                  //                         )
-                  //                     ),
-                  //                   ),
-                  //                 )
-                  //             ),
-                  //
-                  //
-                  //           ],
-                  //         ),
-                  //     ),
-                  //   ],
-                  // ),
               ),
               SizedBox(height: 50,)
 
@@ -332,7 +126,7 @@ class _HomePageState extends State<HomePage> {
 
         ),
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -345,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                           .w900),
                       children: [
                         TextSpan(
-                          text: "000",
+                          text: "${perPersonAmt==0.0? "000":perPersonAmt.toStringAsFixed(2)}",
                           style: TextStyle(fontSize: 47,
                               fontWeight: FontWeight.w900),
                         ),
@@ -367,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                                   .w900, color: Color(0xff03c980)),
                               children: [
                                 TextSpan(
-                                  text: "000",
+                                  text: "${totalBill==0.0? "000":totalBill.toStringAsFixed(2)}",
                                   style: TextStyle(fontSize: 21,
                                       fontWeight: FontWeight.w900,
                                       color: Color(0xff03c980)),
@@ -389,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                                   .w900, color: Color(0xff03c980)),
                               children: [
                                 TextSpan(
-                                  text: "000",
+                                  text: "${totalTipAmt==0.0? "000":totalTipAmt.toStringAsFixed(2)}",
                                   style: TextStyle(fontSize: 21,
                                       fontWeight: FontWeight.w900,
                                       color: Color(0xff03c980)),
@@ -441,6 +235,7 @@ class _HomePageState extends State<HomePage> {
           flex: 3,
           child: TextField(
             controller: billAmtControler,
+            keyboardType:TextInputType.number ,
             decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
@@ -482,131 +277,182 @@ Widget getTitelpart4(){
             child: Column(
               children: [
                 Expanded(
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                          child:Container(
-                            width:double.infinity,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(11.0),
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                            child:InkWell(
+                              onTap: (){
+                                tipPercent=10;
+                                updateTheResult();
+                              },
+                              child: Container(
+                                width:double.infinity,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
 
-                              color: Color(0xff03c980),
+                                  color: Color(0xff03c980),
 
-                            ),
-                            child: Center(
-                              child: Text.rich(
-                                  TextSpan(
-                                      text: "10",
-                                      style: TextStyle(
-                                          fontSize: 21, fontWeight: FontWeight
-                                          .w900, color: Colors.white),
-                                      children: [
-                                        TextSpan(
-                                          text: "%",
-                                          style: TextStyle(fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.white
-                                          ),
-                                        ),
-                                      ]
-                                  )
+                                ),
+                                child: Center(
+                                  child: Text.rich(
+                                      TextSpan(
+                                          text: "10",
+                                          style: TextStyle(
+                                              fontSize: 21, fontWeight: FontWeight
+                                              .w900, color: Colors.white),
+                                          children: [
+                                            TextSpan(
+                                              text: "%",
+                                              style: TextStyle(fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          ]
+                                      )
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
-                      ),
-                      SizedBox(width: 8,),
+                            )
+                        ),
+                        SizedBox(width: 8,),
 
-                      Expanded(
-                          child:Container(
-                            width:double.infinity,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                        Expanded(
+                            child:InkWell(
+                              onTap: (){
+                                tipPercent=15;
+                                updateTheResult();
+                              },
+                              child: Container(
+                                width:double.infinity,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
 
-                              color: Color(0xff03c980),
+                                  color: Color(0xff03c980),
 
-                            ),
-                            child: Center(
-                              child: Text.rich(
-                                  TextSpan(
-                                      text: "15",
-                                      style: TextStyle(
-                                          fontSize: 21, fontWeight: FontWeight
-                                          .w900, color: Colors.white),
-                                      children: [
-                                        TextSpan(
-                                          text: "%",
-                                          style: TextStyle(fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.white
-                                          ),
-                                        ),
-                                      ]
-                                  )
+                                ),
+                                child: Center(
+                                  child: Text.rich(
+                                      TextSpan(
+                                          text: "15",
+                                          style: TextStyle(
+                                              fontSize: 21, fontWeight: FontWeight
+                                              .w900, color: Colors.white),
+                                          children: [
+                                            TextSpan(
+                                              text: "%",
+                                              style: TextStyle(fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          ]
+                                      )
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
-                      ),
-                      SizedBox(width: 8,),
+                            )
+                        ),
+                        SizedBox(width: 8,),
 
-                      Expanded(
-                          child:Container(
-                            width:double.infinity,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                        Expanded(
+                            child:InkWell(
+                              onTap: (){
+                                tipPercent=20;
+                                updateTheResult();
+                              },
+                              child: Container(
+                                width:double.infinity,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
 
-                              color: Color(0xff03c980),
+                                  color: Color(0xff03c980),
 
-                            ),
-                            child: Center(
-                              child: Text.rich(
-                                  TextSpan(
-                                      text: "20",
-                                      style: TextStyle(
-                                          fontSize: 21, fontWeight: FontWeight
-                                          .w900, color: Colors.white),
+                                ),
+                                child: Center(
+                                  child: Text.rich(
+                                      TextSpan(
+                                          text: "20",
+                                          style: TextStyle(
+                                              fontSize: 21, fontWeight: FontWeight
+                                              .w900, color: Colors.white),
 
-                                      children: [
-                                        TextSpan(
-                                          text: "%",
-                                          style: TextStyle(fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.white
-                                          ),
-                                        ),
-                                      ]
-                                  )
+                                          children: [
+                                            TextSpan(
+                                              text: "%",
+                                              style: TextStyle(fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          ]
+                                      )
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
-                      ),
+                            )
+                        ),
 
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 8,),
                 Expanded(
-                  child: Container(
-                    width:double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xff03c980),
+                  child: Padding(
+                    padding: const EdgeInsets.all(11.0),
+                    child: Stack(
+                      children: [
+                        TextField(
+                          // controller: billAmtControler,
+                          keyboardType:TextInputType.number ,
+                          decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              filled: true,
+                              prefixText: "\%",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16)
+                              )
+                          ),
 
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Custom Tip',textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 21,
-                            fontWeight: FontWeight.w800
                         ),
-                      ),
+
+                        custumTip? Container():InkWell(
+                          onTap: (){
+                            custumTip=true;
+                            setState(() {
+
+                            });
+                          },
+                          child: Container(
+                            width:double.infinity,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xff03c980),
+                          
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Custom Tip',textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w800
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+
                     ),
                   ),
                 )
@@ -616,4 +462,157 @@ Widget getTitelpart4(){
       ],
     );
 }
+
+///last part
+Widget lastpart(){
+    return  Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Expanded(
+          child: Text.rich(
+              TextSpan(
+                  text: "Split\n",
+                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
+                  children: [
+                    TextSpan(
+                      text: "the total",
+                      style: TextStyle(fontSize: 21, fontWeight: FontWeight.w400
+                      ),
+                    ),
+                  ]
+              )
+          ),
+
+        ),
+        Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.all(11.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                            child:InkWell(
+                              onTap: (){
+                                if(perCount>1){
+                                  perCount --;
+
+                                  updateTheResult();
+
+                                }
+                              },
+                              child: Container(
+                                width:double.infinity,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10)),
+
+                                  color: Color(0xff03c980),
+
+                                ),
+                                child: Center(
+                                  child: Text.rich(
+                                      TextSpan(
+                                        text: "-",
+                                        style: TextStyle(
+                                            fontSize: 38, fontWeight: FontWeight
+                                            .w900, color: Colors.white),
+
+                                      )
+                                  ),
+                                ),
+                              ),
+                            )
+                        ),
+
+                        Expanded(
+                            flex: 2,
+                            child:Container(
+                              width:double.infinity,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),topRight: Radius.circular(10)),
+
+                                color: Color(0xffffffff),
+
+                              ),
+                              child: Center(
+                                child: Text.rich(
+                                    TextSpan(
+                                      text: "$perCount",
+                                      style: TextStyle(
+                                        fontSize: 21, fontWeight: FontWeight
+                                          .w900, ),
+
+                                    )
+                                ),
+                              ),
+                            )
+                        ),
+                        // SizedBox(width: 8,),
+
+                        Expanded(
+                            child:InkWell(
+                              onTap: (){
+                                perCount ++;
+                                updateTheResult();
+                              },
+                              child: Container(
+                                width:double.infinity,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),topRight: Radius.circular(10)),
+
+                                  color: Color(0xff03c980),
+
+                                ),
+                                child: Center(
+                                  child: Text.rich(
+                                      TextSpan(
+                                        text: "+",
+
+                                        style: TextStyle(
+                                            fontSize: 21, fontWeight: FontWeight
+                                            .w900, color: Colors.white),
+
+                                      )
+                                  ),
+                                ),
+                              ),
+                            )
+                        ),
+
+
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8,),
+
+                ],
+              ),
+            )
+        )
+      ],
+    );
+}
+
+///logic function calculate tip
+void updateTheResult(){
+   if(billAmtControler.text!= ""){
+     totalBill=double.parse(billAmtControler.text.toString());
+     totalTipAmt=totalBill*(tipPercent/100);
+     totalAmt=totalBill+totalTipAmt;
+     perPersonAmt=totalAmt/perCount;
+     setState(() {
+
+     });
+
+   }else{
+     perCount =1;
+   }
+}
+
 }

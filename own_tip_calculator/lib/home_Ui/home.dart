@@ -616,3 +616,19 @@ void updateTheResult(){
 }
 
 }
+
+// ///logic function calculate tip
+// void updateTheResult(){
+//   if(billAmtControler.text!= ""){
+//     totalBill=double.parse(billAmtControler.text.toString());
+//     totalTipAmt=totalBill*(tipPercent/100);
+//     totalAmt=totalBill+totalTipAmt;
+//     perPersonAmt=totalAmt/perCount;
+//     setState(() {
+//
+//     });
+//
+//   }else{
+//     perCount =1;
+//   }
+// }
